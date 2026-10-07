@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Robson Lanches</title>
+<style>
+:root{--red:#e10600;--red2:#ff3b30;--black:#090909;--card:#151515;--gold:#ffc107;--muted:#bdbdbd;--green:#20d56b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 20% 0%,#3a0805 0,transparent 35%),#080808;color:#fff;font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1180px,94%);margin:auto}
+header{position:relative;padding:22px 0 38px;text-align:center;overflow:hidden;background:radial-gradient(circle at 50% 0%,#ff2400 0%,#a50800 12%,#4a0505 30%,#170303 62%,#080808 100%);border-bottom:1px solid #7d1710;box-shadow:0 20px 70px #f0000026,inset 0 -1px 0 #ff3b301f}header:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,#ff2a001c,transparent 55%);pointer-events:none}header:after{content:"";position:absolute;width:360px;height:220px;left:50%;top:-120px;transform:translateX(-50%);background:radial-gradient(circle,#ff3b1830 0%,transparent 70%);pointer-events:none}.brand{position:relative;z-index:2;font-weight:1000;letter-spacing:2px;line-height:.9;animation:brandFloat 9.5s ease-in-out infinite;will-change:transform}.brand b,.brand span{background:none!important;background-image:none!important;-webkit-background-clip:border-box;background-clip:border-box;-webkit-text-fill-color:currentColor;color:currentColor;animation:textGlow 12s ease-in-out infinite;will-change:filter,text-shadow}.brand b{display:block;font-size:clamp(42px,11vw,76px);color:#fff;text-shadow:0 4px 0 #650000,0 0 12px #fff,0 0 28px #f00,0 0 55px #f00}.brand span{position:relative;display:inline-block;margin-top:7px;font-size:clamp(25px,7vw,48px);color:#ff2018;text-shadow:0 0 10px #fff1,0 0 18px #f00,0 0 38px #f00}@keyframes textGlow{0%,72%{filter:brightness(1);text-shadow:inherit}84%{filter:brightness(1.18);text-shadow:0 0 5px currentColor,0 0 16px currentColor,0 0 28px #fff8}100%{filter:brightness(1);text-shadow:inherit}}@keyframes brandFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-3px,0)}}.sub{position:relative;z-index:2;margin-top:16px;color:#ffd34e;font-weight:900;letter-spacing:2px;font-size:12px;text-shadow:0 0 12px #ff9d00;}.heroBtns{position:relative;z-index:2;display:flex;justify-content:center;gap:16px;margin-top:30px;flex-wrap:wrap;padding:0 10px}.btn,.tab,.add,.send,.adminBtn{border:0;border-radius:999px;font-weight:900}.btn{padding:12px 18px;background:#1d1d1d;color:#fff;border:1px solid #333}.orderBtn{position:relative;min-width:170px}.orderBadge{display:none;min-width:24px;height:24px;padding:2px 7px;margin-left:5px;border-radius:999px;background:#e10600;color:#fff;font-size:13px;line-height:20px;box-shadow:0 0 14px #ff1600,0 0 25px #ff160066;vertical-align:middle}.orderBtn.hasItems{animation:none}.orderBtn.hasItems .orderBadge{display:inline-block}.orderBtn.hasItems{border-color:#ff3b30;box-shadow:0 0 18px #ff160055, inset 0 0 12px #ff16001a}.btn.primary{background:var(--red);box-shadow:0 8px 24px #f003}.section{padding:52px 0 20px}.title{text-align:center;margin:0 0 34px;font-size:30px;text-shadow:0 0 12px #f006,0 0 28px #f002;letter-spacing:.5px}.tabs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;overflow:auto;padding:4px 2px 14px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;padding:11px 15px;background:#191919;color:#ddd;border:1px solid #333}.tab.active{background:var(--red);color:#fff;border-color:#ff5149;box-shadow:0 5px 18px #f004}
+.viewToggle{display:flex;justify-content:center;gap:8px;margin:2px 0 20px}.viewToggle button{padding:9px 15px;border-radius:999px;border:1px solid #444;background:#181818;color:#ccc;font-weight:900}.viewToggle button.active{background:#ffd21a;color:#171717;border-color:#ffd21a}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.card{position:relative;background:linear-gradient(145deg,#241210,#0d0d0d);border:1px solid #4a1a16;border-radius:24px;overflow:hidden;box-shadow:0 14px 34px #000b,0 0 22px #f001;display:flex;flex-direction:column;min-width:0;transition:.2s}.card:hover{transform:translateY(-6px);border-color:#ff3b30;box-shadow:0 18px 42px #000c,0 0 30px #f003}.info{padding:13px}.tag{font-size:9px;color:#ffca28;font-weight:900;text-transform:uppercase}.card h3{font-size:16px;margin:7px 0 5px;line-height:1.08}.desc{font-size:11px;color:#bcbcbc;line-height:1.35;min-height:44px}.bottom{margin-top:auto;padding:0 13px 13px}.price{font-size:22px;color:#fff;font-weight:1000;margin-bottom:9px}.add{width:100%;padding:11px;background:var(--red);color:#fff}.add:disabled{background:#444;color:#aaa;cursor:not-allowed}
+.status{margin:10px 0 20px;text-align:center;padding:12px;border-radius:15px;font-weight:900}.statusTop{display:inline-block;margin:0 auto 18px;padding:9px 15px;border-radius:999px;font-size:11px;letter-spacing:.5px;box-shadow:0 0 20px #20d56b33,0 7px 25px #0007;}.statusTop.ok{background:#092d19dd}.statusTop.no{background:#3b0d0bdd;box-shadow:0 0 20px #f22a2233,0 7px 25px #0007}.status.ok{background:#0d2c1a;color:#61f29b;border:1px solid #20d56b}.status.no{background:#35100f;color:#ff7771;border:1px solid #b8322c}
+.checkout{display:none;position:fixed;inset:0;z-index:1000;background:rgba(5,5,5,.97);padding:0;overflow-y:auto;overscroll-behavior:contain}.checkout.open{display:block}.checkoutInner{width:min(900px,100%);min-height:100%;margin:0 auto;background:linear-gradient(145deg,#1b0d0c,#0d0d0d);padding:18px 18px 40px}.orderTop{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:4px 0 16px;background:linear-gradient(#1b0d0c 82%,transparent);}.orderBack{border:1px solid #4a4a4a;background:#191919;color:#fff;border-radius:999px;padding:10px 14px;font-weight:900;white-space:nowrap}.orderTop h2{margin:0;flex:1;text-align:center;font-size:24px;text-shadow:0 0 12px #f005}.checkout h2{margin:0;font-size:25px}.empty{color:#888;padding:10px 0}.cartRow{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #292929;font-size:13px}.qty{display:flex;align-items:center;gap:6px}.qty button{border:0;background:#282828;color:#fff;border-radius:9px;width:28px;height:28px}.remove{background:#450f0c!important;color:#ff7771!important}.total{text-align:right;font-size:23px;font-weight:1000;padding:16px 0}.field{margin:11px 0}.field label{display:block;font-size:12px;color:#ddd;font-weight:800;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;background:#0a0a0a;color:#fff;border:1px solid #383838;border-radius:13px;padding:12px;outline:0}.field textarea{min-height:75px;resize:vertical}.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.pay label{background:#1b1b1b;border:1px solid #333;border-radius:12px;padding:11px;text-align:center;font-weight:900;font-size:12px}.pay input{display:none}.pay input:checked+span{color:#ffd21a}.send{width:100%;padding:15px;background:#20c763;color:#06150b;font-size:16px;margin-top:7px}.backMenu{width:100%;padding:12px;background:#191919;color:#fff;border:1px solid #444;border-radius:999px;font-weight:900;margin-top:10px}.adminBtn{display:block;margin:0 auto 28px;padding:10px 18px;background:#191919;color:#aaa;border:1px solid #333}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#171717;color:#fff;padding:11px 14px;border:1px solid #ff3b30;border-radius:18px;font-weight:900;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:100;box-shadow:0 10px 28px #000c;display:flex;flex-direction:column;align-items:center;gap:7px;min-width:210px;max-width:calc(100vw - 32px);white-space:nowrap}.toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}.toastText{max-width:260px;overflow:hidden;text-overflow:ellipsis;font-size:14px}.toastAction{border:0;background:#e10600;color:#fff;border-radius:999px;padding:10px 18px;font-weight:1000;font-size:12px;width:100%}.orderToast{display:none;position:sticky;top:62px;z-index:20;margin:0 auto 12px;width:min(560px,100%);background:#171717;color:#fff;padding:12px 15px;border:1px solid #ff3b30;border-radius:16px;font-weight:900;text-align:center;box-shadow:0 8px 24px #000c}.orderToast.show{display:block;animation:orderToastIn .16s ease-out}@keyframes orderToastIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:50;padding:18px;overflow:auto}.modal.open{display:block}.modalBox{width:min(900px,100%);margin:20px auto;background:#111;border:1px solid #333;border-radius:24px;padding:18px}.modalHead{display:flex;justify-content:space-between;align-items:center;gap:10px}.close{border:0;background:#333;color:#fff;border-radius:50%;width:38px;height:38px}.adminGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.adminList{margin-top:15px}.adminItem{border:1px solid #303030;border-radius:15px;padding:12px;margin:8px 0;background:#171717}.adminItemTop{display:flex;justify-content:space-between;gap:10px}.adminActions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.mini{padding:8px 10px;border:0;border-radius:10px;background:#292929;color:#fff;font-weight:800}.mini.red{background:#65130f}.mini.green{background:#14572f}.preview{width:80px;height:60px;object-fit:cover;border-radius:10px;background:#222;margin-top:7px}.photoInput{display:none}
+.productPhoto{width:100%;height:155px;object-fit:cover;display:block;background:#180707;border-bottom:1px solid #2d2d2d}.photoEmpty{width:100%;height:155px;background:linear-gradient(135deg,#170707,#0d0d0d);border-bottom:1px solid #2d2d2d}
+
+/* efeitos extras do topo */
+.heroBtns .btn{transition:box-shadow .25s,transform .25s;box-shadow:0 8px 25px #0008;will-change:transform}.heroBtns .btn.primary{animation:heroFloat 6.8s ease-in-out infinite}.heroBtns .orderBtn{animation:heroFloat 7.6s ease-in-out infinite reverse}.heroBtns .btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 30px #f003}@keyframes heroFloat{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-3px,0)}}
+header .wrap:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:#ff1a0a;filter:blur(55px);opacity:.12;left:5%;top:120px;pointer-events:none}
+header .wrap:before{content:"✦   ✦   ✦   ✦   ✦   ✦   ✦";position:absolute;left:0;right:0;top:18px;color:#ffd21a;letter-spacing:14px;font-size:12px;opacity:.35;pointer-events:none;text-shadow:0 0 8px #ff2a00}
+header{isolation:isolate}header .statusTop{position:relative;z-index:4}
+
+
+
+
+
+.title{animation:none}
+
+.tab,.card,.status{animation:none}
+.cartBadge{display:none;background:var(--red);color:#fff;border-radius:999px;padding:3px 8px;font-size:11px;margin-left:5px;box-shadow:0 0 15px #f006}
+.feeLine{display:flex;justify-content:space-between;padding:6px 0;color:#aaa;font-size:13px}.changeBox .pay{grid-template-columns:1fr 1fr}.neighborhoodBox{display:none}.neighborhoodBox.show{display:block}.neighborhoodBox select{width:100%;background:#0a0a0a;color:#fff;border:1px solid #383838;border-radius:13px;padding:12px}
+@media(max-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.card{border-radius:15px}.info{padding:9px}.card h3{font-size:12px}.desc{font-size:9px;min-height:48px}.price{font-size:16px}.bottom{padding:0 9px 9px}.add{font-size:10px;padding:9px 4px}.tag{font-size:7px}.adminGrid{grid-template-columns:1fr}}
+@media(max-width:360px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* acabamento premium: reflexo bonito e leve, sempre preso ao próprio elemento */
+@keyframes slowReflection{
+  0%{left:-45%;opacity:0}
+  8%{left:-30%;opacity:.10}
+  50%{left:65%;opacity:.42}
+  88%{left:145%;opacity:.10}
+  100%{left:160%;opacity:0}
+}
+@keyframes cardReflectionContinuous{
+  0%{left:-45%;opacity:0}
+  8%{left:-30%;opacity:.10}
+  50%{left:65%;opacity:.42}
+  88%{left:145%;opacity:.10}
+  100%{left:160%;opacity:0}
+}
+@keyframes softGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.045)}}
+
+/* Cada reflexo fica CLIPADO no elemento onde deve aparecer.
+   Logo = somente nas letras; botões = somente dentro do botão. */
+.brand b,.brand span,.heroBtns .btn,.status,.card{position:relative;overflow:hidden}
+.brand b::after,.brand span::after,.heroBtns .btn::after,.status::after,.card::after{
+  content:"";
+  position:absolute;
+  top:-45%;
+  left:-45%;
+  width:32%;
+  height:190%;
+  pointer-events:none;
+  background:linear-gradient(112deg,transparent 0%,rgba(255,255,255,0) 38%,rgba(255,255,255,.48) 50%,rgba(255,255,255,.08) 57%,transparent 72%);
+  transform:skewX(-18deg);
+  animation:slowReflection 5.5s cubic-bezier(.35,0,.2,1) infinite;
+  will-change:left,opacity;
+}
+.brand b::after{animation-delay:.35s}
+.brand span::after{animation-delay:1.05s}
+.heroBtns .btn:nth-child(1)::after{animation-delay:.2s}
+.heroBtns .btn:nth-child(2)::after{animation-delay:1.1s}
+.status::after{animation-delay:1.8s}
+.card::after{animation-duration:6.2s;animation-delay:2.2s}
+.productPhoto{position:relative}
+.card{animation:none}
+@media(prefers-reduced-motion:reduce){.brand b::after,.brand span::after,.heroBtns .btn::after,.status::after,.card::after,.card{animation:none!important;filter:none!important}}
+
+header{padding:30px 0 48px;background:radial-gradient(circle at 50% 8%,#ff3b14 0%,#b30a04 13%,#4d0504 35%,#180303 65%,#070707 100%)}
+.brand{margin-top:8px;filter:drop-shadow(0 18px 22px #0009)}
+.brand b,.brand span{position:relative;display:block;transform:skewX(-2deg)}
+
+.statusSlot{position:relative;z-index:4;display:flex;justify-content:center;margin-top:30px;padding-top:4px}
+.statusTop{margin:0;box-shadow:0 0 0 1px #20d56b55,0 0 28px #20d56b55,0 12px 30px #0009}
+.heroBtns{gap:16px;margin-top:26px}
+.heroBtns .btn{min-width:190px;padding:14px 20px}
+.section{padding:58px 0 50px}
+.title{margin-bottom:34px;font-size:30px}
+.tabs{justify-content:center;gap:12px;padding-bottom:22px;flex-wrap:wrap;overflow:visible}
+.tab{padding:13px 19px;box-shadow:inset 0 1px 0 #fff1,0 8px 22px #0007}
+.grid{gap:13px}
+.card{position:relative;box-shadow:0 16px 38px #000b,inset 0 1px 0 #fff1;overflow:hidden}
+.checkout{box-shadow:0 20px 55px #000b,inset 0 1px 0 #fff1}
+
+@media(prefers-reduced-motion:reduce){.brand,.brand b,.brand span,.heroBtns .btn{animation:none!important;will-change:auto}}
+@media(max-width:700px){header{padding:26px 0 42px}.statusSlot{margin-top:28px}.heroBtns{gap:12px}.heroBtns .btn{min-width:0;padding:13px 15px}.section{padding-top:54px;padding-bottom:20px}.title{margin-bottom:30px}.tabs{gap:9px}.grid{gap:13px}}
+</style>
+
+<style id="reflexo-card-final">
+/* Reflexo novo: faixa de brilho suave, contínua e sem paradas */
+.brand::after,.brand b::after,.brand span::after{display:none!important;content:none!important;animation:none!important;}
+.title::after,.tab::after,.sub::after{display:none!important;content:none!important;animation:none!important;}
+
+@keyframes cardGlossSweep{
+  0%{left:-70%;opacity:0}
+  5%{opacity:.12}
+  18%{opacity:.34}
+  55%{opacity:.30}
+  92%{opacity:.12}
+  100%{left:150%;opacity:0}
+}
+.card{position:relative;overflow:hidden;}
+.card::after{
+  content:"";
+  position:absolute;
+  top:-55%;
+  left:-70%;
+  width:42%;
+  height:210%;
+  pointer-events:none;
+  background:linear-gradient(108deg,
+    transparent 0%,
+    rgba(255,255,255,.025) 28%,
+    rgba(255,255,255,.12) 40%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.12) 60%,
+    rgba(255,255,255,.025) 72%,
+    transparent 100%);
+  transform:skewX(-20deg);
+  filter:blur(.4px);
+  animation:cardGlossSweep 4.2s linear infinite;
+  will-change:left,opacity;
+  z-index:5;
+}
+.card:nth-child(1)::after{animation-delay:-.35s}
+.card:nth-child(2)::after{animation-delay:-.55s}
+.card:nth-child(3)::after{animation-delay:-.75s}
+.card:nth-child(4)::after{animation-delay:-.95s}
+.card:nth-child(5)::after{animation-delay:-1.15s}
+.card:nth-child(6)::after{animation-delay:-1.25s}
+@media(prefers-reduced-motion:reduce){.card::after{animation:none!important;opacity:0!important;}}
+</style>
+
+<style id="developer-credit-style">
+.developer-credit{font-size:7px;font-weight:800;letter-spacing:2.2px;text-align:center;color:#aaa;opacity:.34;margin:0 0 7px;line-height:1;height:7px;}
+@media(max-width:700px){.developer-credit{font-size:7px;letter-spacing:2px;margin:0 0 7px;padding-bottom:0;height:7px}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"><span class="toastText" id="toastText"></span><button class="toastAction" id="toastAction" onclick="goToOrder()">VER MEU PEDIDO</button></div>
+<header><div class="wrap"><div class="brand"><b>ROBSON</b><span>LANCHES</span></div><div class="sub">PEDIDOS ONLINE • LANCHES CAPRICHADOS</div><div class="heroBtns"><button class="btn primary" onclick="document.getElementById('cardapio').scrollIntoView()">🍔 VER CARDÁPIO</button><button id="myOrderBtn" class="btn orderBtn" onclick="goToOrder()">🛒 MEU PEDIDO <span id="orderBadge" class="orderBadge">0</span></button></div><div class="statusSlot"><div id="status" class="status statusTop ok">🛵 MOTOBOY DISPONÍVEL</div></div></div></header>
+<main class="wrap">
+<section class="section" id="cardapio"><h2 class="title">Escolha seu lanche</h2><div class="tabs" id="tabs"></div><div class="grid" id="products"></div></section>
+<section class="checkout" id="checkout"><div class="checkoutInner"><div class="orderTop"><button class="orderBack" onclick="backToMenu()">← VOLTAR AO CARDÁPIO</button><h2>🛒 SEU PEDIDO <span class="cartBadge" id="cartBadge"></span></h2></div><div class="orderToast" id="orderToast" role="alert" aria-live="polite"></div><div id="cart"></div><div id="summary"><div class="feeLine" id="feeLine" style="display:none"><span>Taxa de entrega</span><b id="deliveryFee">R$ 0,00</b></div><div class="total" id="total">Total: R$ 0,00</div></div><div class="field"><label>Nome *</label><input id="name" placeholder="Seu nome"></div><div class="field"><label>Telefone *</label><input id="phone" inputmode="numeric" maxlength="15" placeholder="(15) 99999-9999" oninput="maskPhone(this)"></div><div class="field"><label>Forma de pagamento *</label><div class="pay"><label><input type="radio" name="pay" value="Pix"><span>PIX</span></label><label><input type="radio" name="pay" value="Dinheiro"><span>DINHEIRO</span></label><label><input type="radio" name="pay" value="Cartão"><span>CARTÃO</span></label></div></div><div class="field changeBox" id="changeBox" style="display:none"><label>Precisa de troco? *</label><div class="pay"><label><input type="radio" name="changeNeed" value="Nao"><span>NÃO</span></label><label><input type="radio" name="changeNeed" value="Sim"><span>SIM</span></label></div><div id="changeValueBox" style="display:none;margin-top:8px"><label>Troco para quanto? *</label><input id="changeValue" inputmode="decimal" placeholder="Ex.: 50,00" oninput="maskMoney(this)"></div></div><div class="field"><label>Entrega ou retirada *</label><select id="delivery"><option value="">Selecione</option><option>Retirar no local</option><option>Entrega</option></select></div><div class="field neighborhoodBox" id="neighborhoodBox"><label>Bairro da entrega *</label><select id="neighborhood"><option value="">Selecione seu bairro</option></select></div><div id="addressBox" style="display:none"><div class="field"><label>Endereço *</label><textarea id="address" placeholder="Rua, número, bairro e referência"></textarea></div></div><div class="field"><label>Observação</label><textarea id="note" placeholder="Alguma observação do pedido? (opcional)"></textarea></div><button class="send" onclick="finishOrder()">FINALIZAR PEDIDO</button></div></section>
+
+</main>
+<script>
+const P=[
+['X-BURGER','Hambúrgueres','Hambúrguer, queijo, tomate, alface, mussarela, maionese e ketchup',13],['X-SALADA','Hambúrgueres','Hambúrguer, tomate, alface, mussarela, maionese e ketchup',13],['BAURU','Hambúrgueres','Presunto, mussarela, tomate, orégano e ketchup',13],['MISTO QUENTE','Hambúrgueres','Presunto, mussarela, batata palha, maionese e ketchup',13],['QUEIJO QUENTE','Hambúrgueres','Mussarela, batata palha e maionese',17],['X MAIONESE','Hambúrgueres','Hambúrguer, mussarela, batata palha e maionese',13],
+['HOT DOG COMPLETO','Hot Dog','1 salsicha, batata palha, purê de batata, vinagrete, maionese, ketchup e mostarda',15],['HOT DOG ESPECIAL','Hot Dog','2 salsichas, batata palha, purê de batata, vinagrete, maionese, ketchup, mostarda e catupiry',18],['HOT DOG ESPECIAL C/ BACON','Hot Dog','2 salsichas, bacon, batata palha, purê de batata, vinagrete, maionese, ketchup e mostarda',18],['HOT DOG ESPECIAL C/ MUSSARELA','Hot Dog','2 salsichas, batata palha, purê de batata, vinagrete, maionese, ketchup, mostarda e mussarela',18],['HOT DOG ESPECIAL C/ CALABRESA','Hot Dog','Calabresa, 2 salsichas, batata palha, purê de batata, vinagrete, maionese, ketchup e mostarda',18],['BIG DOG','Hot Dog','Bacon, calabresa, 2 salsichas, batata palha, purê de batata, vinagrete, maionese, ketchup e mostarda',23],['MONSTER DOG','Hot Dog','3 salsichas, calabresa, bacon, cheddar, catupiry, mussarela, purê de batata, batata palha, queijo e vinagrete',28],
+['X-EGG','Lanches Especiais','Hambúrguer, ovo, tomate, mussarela, alface, maionese e ketchup',19],['X-EGG ESPECIAL','Lanches Especiais','2 hambúrgueres, ovo, tomate, mussarela, alface, maionese e ketchup',23],['X-EGG C/ CALABRESA','Lanches Especiais','Hambúrguer, calabresa, ovo, tomate, mussarela, alface, maionese e ketchup',23],['X-CALABRESA','Lanches Especiais','Hambúrguer, calabresa, tomate, mussarela, alface, maionese e ketchup',19],['X-CALABRESA ESPECIAL','Lanches Especiais','2 hambúrgueres, calabresa, tomate, mussarela, alface, maionese e ketchup',23],['AMERICANO','Lanches Especiais','Ovo, presunto, tomate, mussarela, alface, orégano, maionese e ketchup',18],['X-CATUPIRY','Lanches Especiais','Hambúrguer, catupiry, batata palha, mussarela e maionese',18],['X-CHEDDAR','Lanches Especiais','Hambúrguer, cheddar, batata palha, mussarela e maionese',18],['FRANCÃO','Lanches Especiais','Frango, tomate, mussarela, maionese e ketchup',20],['FRANCÃO ESPECIAL','Lanches Especiais','Frango, tomate, pão, alface, catupiry, batata palha, maionese e ketchup',35],['LANCHE DE PERNIL','Lanches Especiais','Pão, pernil, desfiado e vinagrete',39],['X-SALADA ESPECIAL','Lanches Especiais','2 hambúrgueres, alface, tomate, mussarela, maionese e ketchup',18],['X-SIG SALADA','Lanches Especiais','3 hambúrgueres, alface, tomate, mussarela, maionese, catupiry e ketchup',55],['X-BACON','Lanches Especiais','Hambúrguer, bacon, alface, tomate, mussarela, maionese e ketchup',18],['X-BACON ESPECIAL','Lanches Especiais','2 hambúrgueres, bacon, alface, tomate, mussarela, maionese e ketchup',23],['X-BACON C/ OVO','Lanches Especiais','Hambúrguer, ovo, bacon, alface, tomate, mussarela, maionese e ketchup',23],['X-TUDO','Lanches Especiais','Hambúrguer, ovo, bacon, presunto, catupiry, cheddar, batata palha, calabresa, alface, tomate, mussarela, maionese e ketchup',30]
+];
+let products=JSON.parse(localStorage.getItem('robson_lanches_products')||'null');
+if(!Array.isArray(products)||products.length!==30){products=P.map((x,i)=>({id:i+1,name:x[0],cat:x[1],desc:x[2],price:x[3],available:true,photo:''}));saveProducts()}
+let cat='Todos',cart=[],orderOpen=false;
+let clientCategories=['Todos','Hambúrgueres','Hot Dog','Lanches Especiais'];
+// Por enquanto, o motoboy começa disponível para os testes. O ADM pode alterar depois.
+
+// Bairros de teste: usados somente se o ADM ainda não cadastrou bairros.
+try{const _b=JSON.parse(localStorage.getItem('robson_lanches_neighborhoods')||'[]');if(!Array.isArray(_b)||_b.length===0){throw new Error('empty')}}catch(e){localStorage.setItem('robson_lanches_neighborhoods',JSON.stringify([
+  {name:'Centro',fee:5,available:true},
+  {name:'Jardim Nova',fee:8,available:true},
+  {name:'Vila Nova',fee:10,available:true},
+  {name:'Jardim Brasil',fee:12,available:true}
+]))}
+function saveProducts(){localStorage.setItem('robson_lanches_products',JSON.stringify(products))}function money(n){return 'R$ '+Number(n).toFixed(2).replace('.',',')}
+let toastTimer;function toast(t,action=true){const e=document.getElementById('toast'),txt=document.getElementById('toastText'),btn=document.getElementById('toastAction');txt.textContent=t;txt.style.display='block';btn.style.display=action&&cart.length?'block':'none';e.classList.add('show');clearTimeout(toastTimer);if(action&&cart.length){toastTimer=setTimeout(()=>{txt.textContent='';txt.style.display='none';btn.style.display='block';e.classList.add('show');},2600)}}
+let orderToastTimer;function orderToast(t){const e=document.getElementById('orderToast');if(!e)return;e.textContent=t;e.classList.add('show');clearTimeout(orderToastTimer);orderToastTimer=setTimeout(()=>e.classList.remove('show'),3500)}
+function renderTabs(){const seen=new Set(),cats=[];for(const c of clientCategories){const k=normCat(c);if(!k||seen.has(k))continue;seen.add(k);cats.push(c)}if(!seen.has('TODOS'))cats.unshift('Todos');document.getElementById('tabs').innerHTML=cats.map(c=>`<button type="button" class="tab ${normCat(c)===normCat(cat)?'active':''}" data-cat="${String(c).replace(/"/g,'&quot;')}" onclick="setCat(this.dataset.cat)">${c}</button>`).join('')}
+function setCat(c){cat=String(c||'Todos');renderTabs();renderProducts()}
+function setPhotoMode(v){photoMode=true;renderProducts()}
+function normCat(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Z0-9]+/gi,' ').trim().toUpperCase()}
+function sameCategory(a,b){const A=normCat(a),B=normCat(b);if(A===B)return true;const aliases={HAMBURGUERES:['HAMBURGUERES','HAMBURGUER','HAMBURGUES'],HOTDOG:['HOT DOG','HOTDOG'],LANCHESPECIAIS:['LANCHES ESPECIAIS','LANCHE ESPECIAL','LANCHES ESPECIAL']};for(const group of Object.values(aliases)){const na=group.map(normCat).includes(A),nb=group.map(normCat).includes(B);if(na&&nb)return true}return false}
+function renderProducts(){const list=products.filter(p=>p.available&&(normCat(cat)==='TODOS'||sameCategory(p.cat,cat)));document.getElementById('products').innerHTML=list.map(p=>`<article class="card">${p.photo?`<img class="productPhoto" src="${p.photo}" alt="${p.name}">`:`<div class="photoEmpty"></div>`}<div class="info"><div class="tag">${p.cat}</div><h3>${p.name}</h3><div class="desc">${p.desc}</div></div><div class="bottom"><div class="price">${money(p.price)}</div><button class="add" onclick="add(${p.id})">ADICIONAR</button></div></article>`).join('')||'<div style="grid-column:1/-1;text-align:center;color:#aaa;padding:30px">Nenhum lanche disponível.</div>'}
+function goToOrder(){if(!cart.length){toast('Adicione um lanche primeiro',false);return}orderOpen=true;document.body.style.overflow='hidden';renderCart();const box=document.getElementById('checkout');box.scrollTop=0}
+function backToMenu(){orderOpen=false;document.body.style.overflow='';document.getElementById('orderToast')?.classList.remove('show');clearTimeout(orderToastTimer);renderCart()}
+function add(id){const p=products.find(x=>x.id===id);let i=cart.find(x=>x.id===id);if(i)i.q++;else cart.push({id, q:1});orderOpen=false;renderCart();toast(p.name+' adicionado',true)}
+function getNeighborhoods(){try{const n=JSON.parse(localStorage.getItem('robson_lanches_neighborhoods')||'[]');return Array.isArray(n)?n:[]}catch(e){return []}}
+function getSelectedFee(){const n=getNeighborhoods().find(x=>x.name===document.getElementById('neighborhood').value);return n?Number(n.fee)||0:0}
+function renderNeighborhoods(){const sel=document.getElementById('neighborhood');if(!sel)return;const list=getNeighborhoods();sel.innerHTML='<option value="">Selecione seu bairro</option>'+list.filter(x=>x.available!==false).map(x=>`<option value="${String(x.name).replace(/"/g,'&quot;')}">${x.name} — ${money(x.fee)}</option>`).join('')}
+function getDeliveryFee(){return getSelectedFee()}
+function renderCart(){if(!cart.length){document.getElementById('toast')?.classList.remove('show');clearTimeout(toastTimer);}
+const box=document.getElementById('checkout');const el=document.getElementById('cart');const badge=document.getElementById('cartBadge');const orderBadge=document.getElementById('orderBadge');const orderBtn=document.getElementById('myOrderBtn');const count=cart.reduce((s,i)=>s+i.q,0);orderBadge.textContent=count;orderBtn.classList.toggle('hasItems',count>0);if(!cart.length){orderOpen=false;document.body.style.overflow='';box.classList.remove('open');box.style.display='none';el.innerHTML='';document.getElementById('total').textContent='Total: R$ 0,00';document.getElementById('feeLine').style.display='none';badge.style.display='none';return}box.classList.toggle('open',orderOpen);box.style.display=orderOpen?'block':'none';badge.textContent=count+' item'+(count>1?'s':'');badge.style.display='inline-block';let subtotal=0;el.innerHTML=cart.map((i,idx)=>{const p=products.find(x=>x.id===i.id);const sub=p.price*i.q;subtotal+=sub;return `<div class="cartRow"><span><b>${i.q}x</b> ${p.name}</span><span class="qty"><b>${money(sub)}</b><button onclick="changeQ(${idx},-1)">−</button><button onclick="changeQ(${idx},1)">+</button><button class="remove" onclick="removeItem(${idx})">×</button></span></div>`}).join('');const isDelivery=document.getElementById('delivery').value==='Entrega';const fee=isDelivery?getDeliveryFee():0;document.getElementById('feeLine').style.display=isDelivery?'flex':'none';document.getElementById('deliveryFee').textContent=money(fee);document.getElementById('total').textContent='Total: '+money(subtotal+fee)}
+function changeQ(i,n){cart[i].q+=n;if(cart[i].q<=0)cart.splice(i,1);renderCart()}function removeItem(i){cart.splice(i,1);renderCart()}
+function maskMoney(el){
+  let raw=String(el.value||'').replace(/\D/g,'');
+  if(!raw){el.value='';return}
+  raw=raw.replace(/^0+(?=\d)/,'').slice(0,9);
+  const cents=raw.padStart(3,'0');
+  const whole=cents.slice(0,-2);
+  const decimal=cents.slice(-2);
+  el.value=Number(whole).toLocaleString('pt-BR')+','+decimal;
+  try{el.setSelectionRange(el.value.length,el.value.length)}catch(e){}
+}
+function formatChangeValue(){
+  const el=document.getElementById('changeValue');
+  if(!el||!el.value)return;
+  maskMoney(el);
+}
+function selectChange(value){
+  const input=document.querySelector('input[name="changeNeed"][value="'+value+'"]');
+  if(input){input.checked=true;updateChangeFields();}
+}
+function updateChangeFields(){
+  const pay=document.querySelector('input[name=pay]:checked')?.value||'';
+  const box=document.getElementById('changeBox');
+  const valueBox=document.getElementById('changeValueBox');
+  if(!box||!valueBox)return;
+  if(pay!=='Dinheiro'){
+    box.style.display='none';
+    valueBox.style.display='none';
+    document.querySelectorAll('input[name=changeNeed]').forEach(x=>x.checked=false);
+    document.getElementById('changeValue').value='';
+    return;
+  }
+  box.style.display='block';
+  const selected=document.querySelector('input[name=changeNeed]:checked')?.value||'';
+  valueBox.style.display=selected==='Sim'?'block':'none';
+}
+document.querySelectorAll('input[name=pay]').forEach(x=>x.addEventListener('change',updateChangeFields));document.querySelectorAll('input[name=changeNeed]').forEach(x=>x.addEventListener('change',updateChangeFields));document.getElementById('changeValue').addEventListener('blur',formatChangeValue);
+document.getElementById('delivery').addEventListener('change',e=>{if(e.target.value==='Entrega'&&localStorage.getItem('robson_lanches_moto')==='false'){e.target.value='';toast('Entrega indisponível: motoboy está indisponível',false);return}const on=e.target.value==='Entrega';document.getElementById('addressBox').style.display=on?'block':'none';document.getElementById('neighborhoodBox').classList.toggle('show',on);if(on)renderNeighborhoods();renderCart()});document.getElementById('neighborhood').addEventListener('change',renderCart);
+function renderStatus(){const on=localStorage.getItem('robson_lanches_moto')!=='false';const e=document.getElementById('status');if(e){e.className='status statusTop '+(on?'ok':'no');e.textContent=on?'🛵 MOTOBOY DISPONÍVEL':'🚫 MOTOBOY INDISPONÍVEL'}const sel=document.getElementById('delivery'), opt=[...sel.options].find(o=>o.value==='Entrega');if(opt)opt.disabled=!on;if(!on&&sel.value==='Entrega'){sel.value='';document.getElementById('addressBox').style.display='none';document.getElementById('neighborhoodBox').classList.remove('show');renderCart();}}
+function maskPhone(el){let v=el.value.replace(/\D/g,'').slice(0,11);if(v.length>10)el.value='('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);else if(v.length>6)el.value='('+v.slice(0,2)+') '+v.slice(2,6)+'-'+v.slice(6);else if(v.length>2)el.value='('+v.slice(0,2)+') '+v.slice(2);else el.value=v}
+function finishOrder(){
+  if(!cart.length){orderToast('Adicione um lanche primeiro');return}
+  const name=document.getElementById('name').value.trim();
+  const phone=document.getElementById('phone').value.replace(/\D/g,'');
+  const pay=document.querySelector('input[name=pay]:checked')?.value||'';
+  const del=document.getElementById('delivery').value;
+  const address=document.getElementById('address').value.trim();
+  const bairro=document.getElementById('neighborhood').value;
+  const note=document.getElementById('note').value.trim();
+  if(!name){orderToast('Nome é obrigatório. Preencha seu nome.');document.getElementById('name').focus();return}
+  if(phone.length!==11){orderToast('Número de telefone incorreto. Digite os 11 números.');document.getElementById('phone').focus();return}
+  if(!pay){orderToast('Forma de pagamento é obrigatória. Escolha PIX, dinheiro ou cartão.');document.querySelector('.pay input')?.focus();return}
+  let changeNeed='', changeValue='', numeric=NaN;
+  if(pay==='Dinheiro'){
+    changeNeed=document.querySelector('input[name=changeNeed]:checked')?.value||'';
+    if(!changeNeed){orderToast('Troco é obrigatório. Informe se precisa de troco.');document.querySelector('input[name=changeNeed]')?.focus();return}
+    if(changeNeed==='Sim'){
+      changeValue=document.getElementById('changeValue').value.trim();
+      numeric=Number(changeValue.replace(/[^0-9,]/g,'').replace(/\./g,'').replace(',','.'));
+      if(!changeValue || !Number.isFinite(numeric)){orderToast('Troco é obrigatório. Informe o valor para o qual precisa de troco.');document.getElementById('changeValue').focus();return}
+      let subtotalCheck=cart.reduce((sum,i)=>sum+products.find(p=>p.id===i.id).price*i.q,0);
+      const feeCheck=del==='Entrega'?getDeliveryFee():0;
+      const totalCheck=subtotalCheck+feeCheck;
+      if(numeric<totalCheck){orderToast('O valor para troco precisa ser maior ou igual ao total do pedido.');document.getElementById('changeValue').focus();return}
+    }
+  }
+  if(!del){orderToast('Entrega ou retirada é obrigatório. Escolha uma opção.');document.getElementById('delivery').focus();return}
+  if(del==='Entrega'){
+    if(localStorage.getItem('robson_lanches_moto')==='false'){orderToast('Entrega indisponível no momento. Escolha retirada.');document.getElementById('delivery').focus();return}
+    if(!bairro){orderToast('Bairro é obrigatório. Selecione seu bairro.');document.getElementById('neighborhood').focus();return}
+    if(!address){orderToast('Endereço é obrigatório. Preencha o endereço para entrega.');document.getElementById('address').focus();return}
+  }
+  let subtotal=cart.reduce((s,i)=>s+products.find(p=>p.id===i.id).price*i.q,0),fee=del==='Entrega'?getDeliveryFee():0,total=subtotal+fee;
+  let lines=cart.map(i=>{let p=products.find(x=>x.id===i.id);return `${i.q}x ${p.name} - ${money(p.price*i.q)}`}).join('%0A');
+  let msg=`*ROBSON LANCHES*%0A%0A${lines}%0A%0ASubtotal: ${money(subtotal)}`+(fee?`%0ATaxa de entrega: ${money(fee)}`:'')+`%0A%0A*Total: ${money(total)}*%0A%0ANome: ${encodeURIComponent(name)}%0ATelefone: ${phone}%0APagamento: ${pay}`+(pay==='Dinheiro'?`%0ATroco: ${changeNeed==='Sim'?'SIM — para '+encodeURIComponent(money(numeric)):'NÃO'}`:'')+`%0AEntrega: ${del}`+(bairro?`%0ABairro: ${encodeURIComponent(bairro)}`:'')+(address?`%0AEndereço: ${encodeURIComponent(address)}`:'')+(note?`%0AObservação: ${encodeURIComponent(note)}`:'');
+  let wa=localStorage.getItem('robson_lanches_whatsapp')||'5515996451252';
+  if(!wa)return orderToast('Configure o WhatsApp no ADM');
+  window.open('https://wa.me/'+wa+'?text='+msg,'_blank')
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&orderOpen)backToMenu()});
+window.addEventListener('storage',e=>{if(e.key==='robson_lanches_moto'||e.key==='robson_lanches_delivery_fee'||e.key==='robson_lanches_neighborhoods'||e.key==='robson_lanches_products') {if(e.key==='robson_lanches_products'){products=JSON.parse(e.newValue||'[]');renderProducts();} if(e.key==='robson_lanches_delivery_fee'||e.key==='robson_lanches_neighborhoods'){renderNeighborhoods();renderCart();}renderStatus();}});renderTabs();renderProducts();renderNeighborhoods();renderCart();renderStatus();
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyDhBQ-QVbOWxfTvt1fTgi4eZG5GMSLdywA",authDomain:"robson-2a391.firebaseapp.com",projectId:"robson-2a391",storageBucket:"robson-2a391.firebasestorage.app",messagingSenderId:"733759215105",appId:"1:733759215105:web:fa04532f433916aeb35200",measurementId:"G-ZLYFBWEVPQ"};
+const app=initializeApp(firebaseConfig),db=getFirestore(app); window.firebaseDB=db;
+const prodRef=collection(db,"produtos"), cfgRef=doc(db,"config","loja"), bairrosRef=doc(db,"config","bairros"), catRef=doc(db,"config","categorias");
+function syncLocal(key,val){localStorage.setItem(key,JSON.stringify(val));window.dispatchEvent(new StorageEvent('storage',{key,newValue:JSON.stringify(val)}));}
+async function seed(){
+ const ps=JSON.parse(localStorage.getItem('robson_lanches_products')||'null');
+ const snap=await getDoc(cfgRef);
+ if(Array.isArray(ps)&&ps.length&&!snap.exists()) await setDoc(cfgRef,{whatsapp:localStorage.getItem('robson_lanches_whatsapp')||'5515996451252',moto:localStorage.getItem('robson_lanches_moto')!=='false'},{merge:true});
+ if(Array.isArray(ps)&&ps.length){for(const p of ps){await setDoc(doc(db,'produtos',String(p.id)),p,{merge:true});}}
+ const bs=JSON.parse(localStorage.getItem('robson_lanches_neighborhoods')||'[]'); const bSnap=await getDoc(bairrosRef); if(Array.isArray(bs)&&bs.length&&!bSnap.exists()) await setDoc(bairrosRef,{items:bs});
+}
+onSnapshot(prodRef,s=>{const ps=[];s.forEach(d=>ps.push(d.data()));ps.sort((a,b)=>(a.id||0)-(b.id||0));if(ps.length)syncLocal('robson_lanches_products',ps);});
+onSnapshot(cfgRef,s=>{if(!s.exists())return;const c=s.data();if(c.whatsapp)localStorage.setItem('robson_lanches_whatsapp',String(c.whatsapp));if(typeof c.moto==='boolean')localStorage.setItem('robson_lanches_moto',String(c.moto));renderStatus?.();});
+onSnapshot(bairrosRef,s=>{if(s.exists()&&Array.isArray(s.data().items))syncLocal('robson_lanches_neighborhoods',s.data().items);});
+onSnapshot(catRef,s=>{if(!s.exists()||!Array.isArray(s.data().items))return;const remote=s.data().items.map(x=>String(x||'').trim()).filter(Boolean);clientCategories=Array.from(new Set(['Todos','Hambúrgueres','Hot Dog','Lanches Especiais',...remote]));if(cat!=='Todos'&&!clientCategories.some(x=>normCat(x)===normCat(cat)))cat='Todos';renderTabs();renderProducts();});
+try{await seed();}catch(e){console.error('Firebase:',e)}
+</script>
+<div class="developer-credit">DESENVOLVIDO POR NICOLAS.015K</div>
+</body></html>
