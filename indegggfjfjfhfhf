@@ -94,16 +94,16 @@ header{padding:30px 0 48px;background:radial-gradient(circle at 50% 8%,#ff3b14 0
 .checkout{box-shadow:0 20px 55px #000b,inset 0 1px 0 #fff1}
 
 @media(prefers-reduced-motion:reduce){.brand,.brand b,.brand span,.heroBtns .btn{animation:none!important;will-change:auto}}
-@media(max-width:700px){header{padding:26px 0 42px}.statusSlot{margin-top:28px}.heroBtns{gap:12px}.heroBtns .btn{min-width:0;padding:13px 15px}.section{padding-top:54px}.title{margin-bottom:30px}.tabs{gap:9px}.grid{gap:10px}}
-</style>
+max-width{header{padding  margin-top padding-topmargin-bottom}
+</ estilo >
 
-<style id="reflexo-card-final">
+< style  id = "reflexo-card-final" >
 /* Reflexo novo: faixa de brilho suave, contínua e sem paradas */
-.brand::after,.brand b::after,.brand span::after{display:none!important;content:none!important;animation:none!important;}
-.title::after,.tab::after,.sub::after{display:none!important;content:none!important;animation:none!important;}
+  display
+display
 
-@keyframes cardGlossSweep{
-  0%{left:-70%;opacity:0}
+ 
+  left
   5%{opacity:.12}
   18%{opacity:.34}
   55%{opacity:.30}
